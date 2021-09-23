@@ -1,0 +1,18 @@
+.main{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+.card{
+    width: 18rem;
+    display: grid!important;
+    grid-template-rows: 1fr 1fr;
+    gap: 5px;
+    height: 350px;
+    justify-items: center;
+    padding: 5px 5px;   
+    cursor: pointer;
+}
+.card-img-top{
+    width: 120px!important;
+}
