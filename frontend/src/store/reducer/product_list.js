@@ -1,7 +1,8 @@
-import { PRODUCTLIST } from "../actions/product_list";
+import { PRODUCTLIST, FILTERPRODUCT } from "../actions/product_list";
 
 const initial_state = {
-    product: undefined
+    product: undefined,
+    filterProduct: [],
 }
 
 const products = (state = initial_state, action) => {
@@ -10,6 +11,11 @@ const products = (state = initial_state, action) => {
             return {
                 ...state,
                 product: action.payload
+            }
+            case FILTERPRODUCT:
+            return {
+                ...state,
+                filterProduct: action.payload
             }
         default:
             return {

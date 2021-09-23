@@ -14,7 +14,6 @@ const Card = () => {
       dispatch(ProductList())
     }, [location])
     const selctor = useSelector((state) => state?.product_list?.product?.[key]);
-
     return (
         <>
             <div className="card mx-5 my-5">
@@ -26,7 +25,7 @@ const Card = () => {
                     <p className="card-text">${selctor?.price}</p>
                 </div>
             </div>
-            <Addtocart price = {selctor?.price} productDetail = {key} />
+            <Addtocart price = {selctor?.price} product = {selctor} />
         </>
     )
 }

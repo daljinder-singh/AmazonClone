@@ -18,7 +18,7 @@ const Navbar = () =>{
                                 <Link className="nav-link active text-white" aria-current="page" to="/">Dashboard</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link text-white" to="#">Login</Link>
+                                <Link className="nav-link text-white" to="/login">Login</Link>
                             </li>
                         </ul>
                         <ul className="navbar-nav justify-content-end">

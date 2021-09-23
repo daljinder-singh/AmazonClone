@@ -1,6 +1,7 @@
 import axios from "axios"
 
 export const PRODUCTLIST = "PRODUCT_LIST"
+export const FILTERPRODUCT = "FILTER_PRODUCT"
 export const ProductList = () => {
     return async (dispatch) => {
         try {
@@ -12,5 +13,13 @@ export const ProductList = () => {
         } catch (error) {
             console.log(error)
         }
+    }
+}
+
+export const FilterProduct = (payload) =>{
+    console.log(payload)
+    return{
+        type: FILTERPRODUCT,
+        payload
     }
 }

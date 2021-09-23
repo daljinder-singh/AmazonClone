@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { cartDetail } from '../store/actions/cartDetail'
+import { ProductList, FilterProduct } from '../store/actions/product_list'
 
 export const Searchbox = () => {
     const dispatch = useDispatch()
@@ -8,10 +8,11 @@ export const Searchbox = () => {
     const [search, setSearch] = useState('')
     const [filter, setFilter] = useState([])
     const arrFilter = []
-console.log(filter)
+    
     useEffect(() => {
-        //  dispatch(cartDetail())
-     }, [])
+         search.length > 0 ? dispatch(FilterProduct(filter)) 
+         : dispatch(FilterProduct([]))  
+     }, [search])
 
      useEffect(()=>{
             selector?.map((value)=> {

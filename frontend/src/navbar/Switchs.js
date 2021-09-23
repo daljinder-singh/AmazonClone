@@ -1,6 +1,8 @@
 import React from 'react'
 import Dashboard from '../component/dashboard/Dashboard'
-import Card from '../component/card/Card';
+import Card from '../component/card/Card'
+import Login from '../component/Login'
+import SaveproductList from '../component/SaveproductList'
 import { Switch, Route } from "react-router-dom";
 
 const Switchs = () =>{
@@ -9,7 +11,13 @@ const Switchs = () =>{
         <Route exact path="/">
           <Dashboard />
         </Route>
-        <Route path="/:id">
+        <Route exact path = "/saveproductList">
+          <SaveproductList />
+        </Route>
+        <Route exact path = "/login">
+          <Login />
+        </Route>
+        <Route exact path="/:id">
           <Card />
         </Route>
       </Switch>
