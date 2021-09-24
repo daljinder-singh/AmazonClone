@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import Joi from "joi-browser";
+import { useHistory } from "react-router-dom"
 
 const Login =() => {
+    const history = useHistory();
     const [email, setemail] = useState('')
     const handleChange = (e) =>{
         e.preventDefault()
-        setstate(e.target.value)
+        setemail(e.target.value)
     }
-    const schema = Joi.string().max(50).required().email().label("Email")
 
     return (
         <div>
@@ -19,7 +19,7 @@ const Login =() => {
                 />
                 <button >Continue</button>                
             </form>
-            <button>Create your account</button>
+            <button onClick = {() => history.push('/registration')}>Create your account</button>
         </div>
     )
 }

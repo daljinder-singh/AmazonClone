@@ -16,7 +16,7 @@ import './dashboard.css'
 
     const cardInfo =(key) =>{
      const filtercard = allProduct[key]
-     history.push(`/product?key=${key}&id=${filtercard.id}&title=${filtercard.title}&category=${filtercard.category}`)
+     history.push(`/product/product?key=${key}&id=${filtercard.id}&title=${filtercard.title}&category=${filtercard.category}`)
     }
      return(
         <>

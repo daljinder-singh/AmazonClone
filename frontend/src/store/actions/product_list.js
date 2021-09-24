@@ -17,7 +17,6 @@ export const ProductList = () => {
 }
 
 export const FilterProduct = (payload) =>{
-    console.log(payload)
     return{
         type: FILTERPRODUCT,
         payload
