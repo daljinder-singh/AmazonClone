@@ -9,7 +9,7 @@ import { applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reducers from './store/reducer'
-
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 const store = createStore(
   reducers,
@@ -17,13 +17,19 @@ const store = createStore(
     applyMiddleware(thunk)
     // other store enhancers if any
   )
-  )  
+)
 
+// const Site_key: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+// const secret_key: '6LdAw40cAAAAADNOyfPuKIyqakd6ueZy_f4rbPCF'
 ReactDOM.render(
-  <Provider store = {store}>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={store}>
+    <GoogleReCaptchaProvider reCaptchaKey=
+    '6LdAw40cAAAAAIE5JvOGlWSY1gI1B0c9w7SZhjCF'
+    >
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </GoogleReCaptchaProvider>
   </Provider>,
   document.getElementById('root')
 );
