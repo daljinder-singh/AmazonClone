@@ -9,7 +9,7 @@ const cartDetails = (state = initial_state, action) => {
         case CARTDETAIL:
             return {
                 ...state,
-                addToCartDetail: [...state.addToCartDetail, action.payload.payload]
+                addToCartDetail: [...state.addToCartDetail, action.payload]
               
             }
         default:
