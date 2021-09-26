@@ -1,35 +1,33 @@
-import React, { useState } from 'react'
-import {
-    GoogleReCaptchaProvider,
-    useGoogleReCaptcha
-  } from 'react-google-recaptcha-v3';
+import React from 'react'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom"
 
-const Login =() => {
+const Login = () => {
     const { executeRecaptcha } = useGoogleReCaptcha();
     const history = useHistory();
-    const [email, setemail] = useState('')
-    const handleChange = (e) =>{
-        e.preventDefault()
-        setemail(e.target.value)
-    }
-    const continueBtn = async (e) =>{
-        e.preventDefault()
+
+    const { register, formState: { errors }, handleSubmit } = useForm();
+
+    const onSubmit = async (data) => {
+        console.log(data)
         const token = await executeRecaptcha('yourAction');
         console.log(token)
-    }
-
+    };
     return (
         <div>
-            <form className = "mx-5 my-5">
-                <label>Email: </label>
-                <input type = "text"
-                value = {email}
-                onChange = {handleChange}
-                />
-                <button onClick = {continueBtn}>Continue</button>                
+            <form className="mx-5 my-5" onSubmit={handleSubmit(onSubmit)}>
+                <input {...register("email", {
+                    required: "Enter your e-mail",
+                    pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                        message: "Enter a valid e-mail address",
+                    }
+                })} />
+                {errors.email && <p className="error">{errors.email.message}</p>}
+                <button>Continue</button>
             </form>
-            <button onClick = {() => history.push('/registration')}>Create your account</button>
+            <button onClick={() => history.push('/registration')}>Create your account</button>
         </div>
     )
 }

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -19,13 +20,9 @@ const store = createStore(
   )
 )
 
-// const Site_key: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
-// const secret_key: '6LdAw40cAAAAADNOyfPuKIyqakd6ueZy_f4rbPCF'
 ReactDOM.render(
   <Provider store={store}>
-    <GoogleReCaptchaProvider reCaptchaKey=
-    '6LdAw40cAAAAAIE5JvOGlWSY1gI1B0c9w7SZhjCF'
-    >
+    <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_Site_key}>
       <React.StrictMode>
         <App />
       </React.StrictMode>
