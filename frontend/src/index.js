@@ -22,7 +22,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_Site_key}>
+    <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_Captcha_Site_key}>
       <React.StrictMode>
         <App />
       </React.StrictMode>

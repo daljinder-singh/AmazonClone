@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
+import Paypal from './Paypal'
 import { useDispatch } from 'react-redux'
 import { cartDetail } from '../store/actions/cartDetail'
 import { useHistory } from "react-router-dom"
-const arr = []
+
 const Addtocart = ({ price, product }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [Quantity, setQuantity] = useState("1");
+    // const [checkout, setCheckout] = useState(false)
 
-    const buyNow = () => {
-        history.push('/login')
-        console.log(price * Quantity)
-    }
     const addtoCart = () => {
         const getSession = JSON.parse(sessionStorage.getItem(product.id))
         const payload = {
@@ -43,9 +41,12 @@ const Addtocart = ({ price, product }) => {
                     <div>
                         <button onClick={addtoCart}>Add to Cart</button>
                     </div>
-                    <div>
-                        <button onClick={buyNow}>Buy Now</button>
-                    </div>
+                    {/* <div>
+                        {
+                            checkout ? <Paypal /> :
+                                <button onClick={() => setCheckout(true)}>Buy Now</button>
+                        }
+                    </div> */}
                 </div>
             </div>
         </>
