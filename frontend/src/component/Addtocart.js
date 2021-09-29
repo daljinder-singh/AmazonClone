@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Paypal from './Paypal'
 import { useDispatch } from 'react-redux'
+import axios from 'axios'
 import { cartDetail } from '../store/actions/cartDetail'
 import { useHistory } from "react-router-dom"
 
@@ -8,20 +8,27 @@ const Addtocart = ({ price, product }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [Quantity, setQuantity] = useState("1");
-    // const [checkout, setCheckout] = useState(false)
+    const jwtToken = localStorage.getItem('token')
 
-    const addtoCart = () => {
+    const addtoCart = async () => {
         const getSession = JSON.parse(sessionStorage.getItem(product.id))
+        
         const payload = {
             Quantity: parseInt(Quantity),
             total: price * Quantity,
             product: product
         }
+        await axios.post('http://localhost:4000/addTocart',{
+            payload,
+            headers: {
+                "Content-type": "application/json",
+                 "Authorization": `Bearer ${jwtToken}`,
+            },
+        })
         if (getSession?.product?.id === product.id) {
             payload.total = payload.total + getSession.total,
                 payload.Quantity = payload.Quantity + getSession.Quantity
-
-            sessionStorage.setItem(product.id, JSON.stringify(payload));
+                sessionStorage.setItem(product.id, JSON.stringify(payload));            
         } else {
             sessionStorage.setItem(product.id, JSON.stringify(payload));
         }
@@ -41,12 +48,6 @@ const Addtocart = ({ price, product }) => {
                     <div>
                         <button onClick={addtoCart}>Add to Cart</button>
                     </div>
-                    {/* <div>
-                        {
-                            checkout ? <Paypal /> :
-                                <button onClick={() => setCheckout(true)}>Buy Now</button>
-                        }
-                    </div> */}
                 </div>
             </div>
         </>

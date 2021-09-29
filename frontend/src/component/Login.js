@@ -12,11 +12,13 @@ const Login = () => {
 
     const onSubmit = async (data) => {
         const token = await executeRecaptcha(data);
-        console.log(token)
-        await axios.post('http://localhost:4000/loginUser', {
+       const response =  await axios.post('http://localhost:4000/loginUser', {
             data,
             token
         })
+        if(response.status === 200){
+            localStorage.setItem('token',response.data.token)
+        }
     };
     return (
         <div>

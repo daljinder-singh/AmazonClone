@@ -11,7 +11,8 @@ app.use(express.json());
 app.use(cors())
 app.use(routes)
 
-console.log(mongo)
+//set view engine
+app.set('view engine' , 'ejs');
 
 app.listen(port,()=>{
     console.log(`${port} is runing`)
