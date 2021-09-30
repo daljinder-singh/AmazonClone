@@ -17,9 +17,13 @@ const productsSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    users: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'register'
+      },
     date: {
         type: Date,
         default: Date.now,
       },
 })
-module.exports = mongoose.model('selectedProduct', productsSchema)
+module.exports = mongoose.model('selectedProduct', productsSchema, "selectedProduct")

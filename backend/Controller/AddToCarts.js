@@ -6,6 +6,7 @@ const AddToCart = async (req, res, next) => {
         quantity: payload.Quantity,
         price: payload.product.price,
         total_price: payload.total,
+        users: payload.id
     })
     try{
         await newItem.save()

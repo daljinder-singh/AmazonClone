@@ -4,16 +4,12 @@ const RegisterSchema = mongoose.Schema({
     email: {
       type: String,
       unique: true,
-      requied: true,
+      required: true,
     },
     password: {
       type: String,
-      requied: true,
-    },
-    date: {
-      type: Date,
-      default: Date.now,
-    },
-  });
+      required: true,
+    }
+  }, {timestamp: true});
 
-  module.exports = mongoose.model("Register", RegisterSchema);
+  module.exports = mongoose.model("Register", RegisterSchema, 'register');

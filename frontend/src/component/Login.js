@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios';
+import Leaflet from './Leaflet'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom"
@@ -16,8 +17,14 @@ const Login = () => {
             data,
             token
         })
+        console.log(response.data)
         if(response.status === 200){
+            let user = {
+                id : response.data.userId,
+                email : response.data.userEmail
+            }
             localStorage.setItem('token',response.data.token)
+            localStorage.setItem('userInfo',  JSON.stringify(user))
         }
     };
     return (
@@ -44,6 +51,7 @@ const Login = () => {
                 <button>Continue</button>
             </form>
             <button onClick={() => history.push('/registration')}>Create your account</button>
+            <Leaflet />
         </div>
     )
 }

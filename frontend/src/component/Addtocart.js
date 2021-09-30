@@ -6,17 +6,17 @@ import { useHistory } from "react-router-dom"
 
 const Addtocart = ({ price, product }) => {
     const dispatch = useDispatch()
-    const history = useHistory()
     const [Quantity, setQuantity] = useState("1");
     const jwtToken = localStorage.getItem('token')
-
+    const {id, email} = JSON.parse(localStorage.getItem('userInfo'))
     const addtoCart = async () => {
         const getSession = JSON.parse(sessionStorage.getItem(product.id))
         
         const payload = {
             Quantity: parseInt(Quantity),
             total: price * Quantity,
-            product: product
+            product: product,
+            id
         }
         await axios.post('http://localhost:4000/addTocart',{
             payload,
