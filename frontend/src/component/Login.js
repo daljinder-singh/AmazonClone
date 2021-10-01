@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-import Leaflet from './Leaflet'
+import LeafLet from './leaflet/LeafLet'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom"
@@ -51,7 +51,7 @@ const Login = () => {
                 <button>Continue</button>
             </form>
             <button onClick={() => history.push('/registration')}>Create your account</button>
-            <Leaflet />
+            <LeafLet />
         </div>
     )
 }
