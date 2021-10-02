@@ -3,20 +3,13 @@ const registerUser = require('../Models/registerUsers')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const sendEmail = require('./Mailgun')
-const fetch = require('isomorphic-fetch');
 const fs = require("fs")
 var path = require("path");
 
 const emailTemplateSource = fs.readFileSync(path.join(__dirname, "../views/emailTemplate.ejs"), "utf8")
 
 exports.Login = async (req, res, next) =>{
-  const {email, password, token} =req.body.data
-  var response = await fetch(
-  `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.Google_captch_Secret_key}&response=${token}&remoteip=${req.connection.remoteAddress}`,{
-    method: 'post'
-  })
-  const data = await response.json()
-    console.log('googleCaptcha',data)
+  const {email, password} =req.body
     try{
        const user =  await registerUser.aggregate([
             {

@@ -14,10 +14,10 @@ const Login = () => {
     const onSubmit = async (data) => {
         const token = await executeRecaptcha(data);
        const response =  await axios.post('http://localhost:4000/loginUser', {
-            data,
+            email : data.email,
+            password : data.password,
             token
         })
-        console.log(response.data)
         if(response.status === 200){
             let user = {
                 id : response.data.userId,
